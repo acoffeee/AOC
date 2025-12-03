@@ -4418,7 +4418,7 @@ for rotation in rotations_arr:
     if rotation[0] == 'L':
         full_rotations= Math.floor(int(rotation[1:]) / 100)
         zeros += full_rotations
-        dia = full_rotations % 100
+        dia = int(rotation[1:]) % 100
         if dia == 0:
             continue
         cur -=dia
