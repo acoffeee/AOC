@@ -4411,19 +4411,19 @@ rotations_arr = rotations.split("\n")
 cur = 50
 zeros = 0
 for rotation in rotations_arr:
-    zeros += Math.floor(int(rotation[1:]) / 100)
+    if rotation[0] == 'R':
+        cur += int(rotation[1:])
+        zeros += Math.floor(cur / 100)
+        cur = cur % 100
     if rotation[0] == 'L':
-        rotate = int(rotation[1:]) % 100
-        cur -= rotate
-        if cur < 0:
+        full_rotations= Math.floor(int(rotation[1:]) / 100)
+        zeros += full_rotations
+        dia = full_rotations % 100
+        if dia == 0:
+            continue
+        cur -=dia
+        if cur <  0:
             zeros += 1
-            cur += 100 
-    elif rotation[0] == 'R':
-        rotate = int(rotation[1:]) % 100
-        cur += rotate
-        if cur > 99:
-            zeros +=1
-            cur -= 100
-    if cur == 0:
-        zeros +=1
+            cur += 100
+            continue
 print(zeros)
