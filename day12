@@ -4421,9 +4421,12 @@ for rotation in rotations_arr:
         dia = int(rotation[1:]) % 100
         if dia == 0:
             continue
-        cur -=dia
+        if dia == cur:
+            cur = 0
+            zeros +=1
+            continue
+        cur -= dia
         if cur <  0:
             zeros += 1
             cur += 100
-            continue
 print(zeros)
