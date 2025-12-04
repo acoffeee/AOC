@@ -4406,27 +4406,23 @@ R22
 L23
 L2
 R40"""
-import math as Math
 rotations_arr = rotations.split("\n")
+
 cur = 50
 zeros = 0
+
 for rotation in rotations_arr:
     if rotation[0] == 'R':
-        cur += int(rotation[1:])
-        zeros += Math.floor(cur / 100)
-        cur = cur % 100
-    if rotation[0] == 'L':
-        full_rotations= Math.floor(int(rotation[1:]) / 100)
-        zeros += full_rotations
-        dia = int(rotation[1:]) % 100
-        if dia == 0:
-            continue
-        if dia == cur:
-            cur = 0
-            zeros +=1
-            continue
-        cur -= dia
-        if cur <  0:
-            zeros += 1
-            cur += 100
+        for _ in range(int(rotation[1:])):
+            cur += 1
+            if cur == 100:
+                cur = 0
+                zeros +=1
+    elif rotation[0] == 'L':
+        for _ in range(int(rotation[1:])):
+            cur -= 1
+            if cur == 0:
+                zeros +=1
+            if cur == -1:
+                cur = 99
 print(zeros)
